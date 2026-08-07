@@ -33,7 +33,7 @@ export function clearAll() {
 
   if (isAlreadyClear) {
 
-    setStatus(
+    initStatus(
       "Workspace is already clear",
       "warning"
     );
