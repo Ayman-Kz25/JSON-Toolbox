@@ -9,6 +9,7 @@ import {
 
 import { showToast } from "./toast.js";
 import { updateStats } from "./stats.js";
+import { initStatus, setStatus } from "./status.js";
 
 
 export function initClear() {
@@ -22,6 +23,32 @@ export function initClear() {
 
 
 export function clearAll() {
+
+  const isAlreadyClear =
+    !jsonInput?.value.trim() &&
+    !jsonOutput?.value.trim() &&
+    !jsonFileInput?.value &&
+    errorMessage?.hidden !== false;
+
+
+  if (isAlreadyClear) {
+
+    setStatus(
+      "Workspace is already clear",
+      "warning"
+    );
+
+
+    showToast(
+      "Workspace is already clear.",
+      "info"
+    );
+
+
+    return;
+  }
+
+
 
   if (jsonInput) {
     jsonInput.value = "";
@@ -48,8 +75,14 @@ export function clearAll() {
   }
 
 
-  // Reset all counters
+  // Reset counters
   updateStats();
+
+
+  initStatus(
+    "Workspace cleared",
+    "warning"
+  );
 
 
   showToast(

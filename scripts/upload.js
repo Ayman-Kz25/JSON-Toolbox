@@ -3,6 +3,7 @@ import {
   jsonFileInput,
   jsonInput,
 } from "./dom.js";
+import { initStatus } from "./status.js";
 
 import { showToast } from "./toast.js";
 
@@ -65,6 +66,8 @@ function handleFileUpload(event) {
 
       jsonInput.value = content;
 
+      initStatus("JSON file uploaded successfully.",
+        "success");
 
       showToast(
         "JSON file uploaded successfully.",

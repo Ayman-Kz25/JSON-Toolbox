@@ -1,5 +1,6 @@
 import { validateBtn, jsonInput, jsonOutput } from "./dom.js";
 import { updateStats } from "./stats.js";
+import { initStatus } from "./status.js";
 import { showToast } from "./toast.js";
 
 export function initValidator() {
@@ -20,6 +21,8 @@ export function validateJSON() {
     JSON.parse(input);
 
     updateStats();
+
+    initStatus("Valid JSON.", "success");
 
     showToast("Valid JSON.", "success");
 

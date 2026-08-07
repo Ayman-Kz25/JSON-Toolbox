@@ -1,5 +1,6 @@
 import { minifyBtn, jsonInput, jsonOutput } from "./dom.js";
-import { updateStats } from "./stats.js";
+import { initStats, updateStats } from "./stats.js";
+import { initStatus } from "./status.js";
 import { showToast } from "./toast.js";
 
 export function initMinifier() {
@@ -24,6 +25,8 @@ export function minifyJSON() {
     jsonOutput.value = minifiedJSON;
 
     updateStats();
+
+    initStatus("JSON minified successfully.", "success");
 
     showToast("JSON minified successfully.", "success");
   } catch (error) {

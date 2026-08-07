@@ -5,6 +5,7 @@ import { initDownloader } from "./scripts/download.js";
 import {initFormatter} from "./scripts/formatter.js";
 import { initMinifier } from "./scripts/minifier.js";
 import { initStats } from "./scripts/stats.js";
+import { initStatus } from "./scripts/status.js";
 import { initTheme } from "./scripts/theme.js";
 import { initUploader } from "./scripts/upload.js";
 import { initValidator } from "./scripts/validator.js";
@@ -20,6 +21,7 @@ function initApp(){
     initUploader();
     initClear();
     initStats();
+    initStatus();
 }
 
 initApp();

@@ -1,5 +1,6 @@
 import { formatBtn, jsonInput, jsonOutput } from "./dom.js";
 import { updateStats } from "./stats.js";
+import { initStatus } from "./status.js";
 import { showToast } from "./toast.js";
 
 export function initFormatter() {
@@ -24,6 +25,8 @@ export function formatJSON() {
     jsonOutput.value = formattedJSON;
 
     updateStats();
+
+    initStatus("JSON formatted successfully.", "success");
 
     showToast("JSON formatted successfully.", "success");
   } catch (error) {

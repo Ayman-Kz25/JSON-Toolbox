@@ -1,20 +1,14 @@
-import {
-  convertBtn,
-  conversionType,
-  jsonInput,
-  jsonOutput,
-} from "./dom.js";
+import { convertBtn, conversionType, jsonInput, jsonOutput } from "./dom.js";
 import { updateStats } from "./stats.js";
+import { initStatus } from "./status.js";
 
 import { showToast } from "./toast.js";
-
 
 export function initConverter() {
   if (!convertBtn) return;
 
   convertBtn.addEventListener("click", convertJSON);
 }
-
 
 export function convertJSON() {
   const input = jsonInput.value.trim();
@@ -24,7 +18,6 @@ export function convertJSON() {
     return;
   }
 
-
   try {
     const parsedJSON = JSON.parse(input);
 
@@ -32,39 +25,37 @@ export function convertJSON() {
 
     let result = "";
 
-
     switch (type) {
       case "csv":
         result = convertToCSV(parsedJSON);
         break;
 
-
       case "xml":
         result = convertToXML(parsedJSON);
         break;
 
-
       case "yaml":
         result = convertToYAML(parsedJSON);
         break;
-
 
       default:
         showToast("Unsupported conversion type.", "error");
         return;
     }
 
-
     jsonOutput.value = result;
 
     updateStats();
 
-    showToast(
+    initStatus(
       `JSON converted to ${type.toUpperCase()} successfully.`,
-      "success"
+      "success",
     );
 
-
+    showToast(
+      `JSON converted to ${type.toUpperCase()} successfully.`,
+      "success",
+    );
   } catch (error) {
     jsonOutput.value = "";
 
@@ -73,7 +64,6 @@ export function convertJSON() {
     console.error("JSON conversion error:", error);
   }
 }
-
 
 /* ====================================
    JSON → CSV
@@ -84,14 +74,11 @@ function convertToCSV(data) {
     data = [data];
   }
 
-
   if (data.length === 0) {
     return "";
   }
 
-
   const headers = Object.keys(data[0]);
-
 
   const rows = data.map((item) =>
     headers
@@ -104,34 +91,23 @@ function convertToCSV(data) {
 
         return `"${String(value).replaceAll('"', '""')}"`;
       })
-      .join(",")
+      .join(","),
   );
 
-
-  return [
-    headers.join(","),
-    ...rows,
-  ].join("\n");
+  return [headers.join(","), ...rows].join("\n");
 }
-
 
 /* ====================================
    JSON → XML
 ==================================== */
 
 function convertToXML(data) {
-
   function objectToXML(obj, nodeName = "item") {
-
     if (Array.isArray(obj)) {
-      return obj
-        .map((item) => objectToXML(item, nodeName))
-        .join("");
+      return obj.map((item) => objectToXML(item, nodeName)).join("");
     }
 
-
     if (typeof obj === "object" && obj !== null) {
-
       return Object.entries(obj)
         .map(([key, value]) => {
           return `<${key}>${objectToXML(value, key)}</${key}>`;
@@ -139,14 +115,11 @@ function convertToXML(data) {
         .join("");
     }
 
-
     return escapeXML(String(obj));
   }
 
-
   return `<?xml version="1.0" encoding="UTF-8"?>\n<root>${objectToXML(data)}</root>`;
 }
-
 
 function escapeXML(value) {
   return value
@@ -157,17 +130,14 @@ function escapeXML(value) {
     .replaceAll("'", "&apos;");
 }
 
-
 /* ====================================
    JSON → YAML
 ==================================== */
 
 function convertToYAML(data) {
-
   if (!window.jsyaml) {
     throw new Error("YAML library not loaded.");
   }
-
 
   return window.jsyaml.dump(data, {
     indent: 2,
