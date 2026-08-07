@@ -9,7 +9,7 @@ import {
 
 import { showToast } from "./toast.js";
 import { updateStats } from "./stats.js";
-import { initStatus, setStatus } from "./status.js";
+import { initStatus } from "./status.js";
 
 
 export function initClear() {
