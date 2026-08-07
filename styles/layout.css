@@ -1,0 +1,239 @@
+/* ====================================
+   App Layout
+==================================== */
+
+.app {
+  width: 100%;
+  max-width: var(--app-max-width);
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ====================================
+   Header
+==================================== */
+
+.header {
+  min-height: var(--header-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-6);
+}
+
+
+/* ====================================
+   Brand
+==================================== */
+
+.brand {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-3);
+}
+
+.brand-info {
+  min-width: 0;
+}
+
+
+/* ====================================
+   Header Actions
+==================================== */
+
+.header-actions {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+
+/* ====================================
+   Toolbar
+==================================== */
+
+.toolbar {
+  min-height: var(--toolbar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-4);
+}
+
+
+/* ====================================
+   Toolbar Groups
+==================================== */
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-2);
+
+  min-width: 0;
+}
+
+
+/* ====================================
+   Main Workspace
+==================================== */
+
+.workspace {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: var(--workspace-gap);
+
+  min-height: 0;
+}
+
+
+/* ====================================
+   Editor Panels
+==================================== */
+
+.editor-panel {
+  min-width: 0;
+  min-height: var(--panel-min-height);
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ====================================
+   Panel Header
+==================================== */
+
+.panel-header {
+  min-height: var(--panel-header-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-4);
+
+  flex-shrink: 0;
+}
+
+.panel-title {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-3);
+}
+
+.panel-title > div {
+  min-width: 0;
+}
+
+.panel-actions {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-2);
+}
+
+
+/* ====================================
+   Editor Wrapper
+==================================== */
+
+.editor-wrapper {
+  position: relative;
+
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ====================================
+   Result Actions
+==================================== */
+
+.result-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: var(--space-2);
+
+  flex-shrink: 0;
+}
+
+
+/* ====================================
+   Status Bar
+==================================== */
+
+.status-bar {
+  min-height: var(--status-bar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--space-4);
+}
+
+
+/* ====================================
+   Status Groups
+==================================== */
+
+.status-item {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: var(--space-2);
+}
+
+
+/* ====================================
+   Prevent Flex Overflow
+==================================== */
+
+.header,
+.toolbar,
+.workspace,
+.status-bar,
+.panel-header {
+  width: 100%;
+}
+
+.brand,
+.brand-info,
+.workspace > *,
+.editor-wrapper,
+.panel-title {
+  min-width: 0;
+}

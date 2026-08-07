@@ -1,0 +1,374 @@
+:root {
+  /* ================================
+     Typography
+  ================================= */
+
+  --font-sans:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-mono:
+    "JetBrains Mono",
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 0.875rem;
+  --font-size-md: 0.9375rem;
+  --font-size-lg: 1rem;
+  --font-size-xl: 1.125rem;
+  --font-size-2xl: 1.25rem;
+  --font-size-3xl: 1.5rem;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.7;
+
+
+  /* ================================
+     Brand
+  ================================= */
+
+  --color-primary: #c77b8a;
+  --color-primary-hover: #b86b7a;
+  --color-primary-active: #a85c6c;
+
+  --color-primary-soft: #f9e9ed;
+  --color-primary-text: #9b5363;
+
+
+  /* ================================
+     Semantic Colors
+  ================================= */
+
+  /* Soft Green */
+  --color-success: #7da889;
+  --color-success-hover: #6b9778;
+  --color-success-soft: #edf5ee;
+
+  /* Rose Pink */
+  --color-danger: #d87587;
+  --color-danger-hover: #c76275;
+  --color-danger-soft: #fbedf0;
+
+  /* Warm Peach */
+  --color-warning: #d49a68;
+  --color-warning-hover: #c48855;
+  --color-warning-soft: #fbf1e5;
+
+  /* Dusty Rose */
+  --color-info: #b9828c;
+  --color-info-soft: #f7edef;
+
+
+  /* ================================
+     Light Theme
+  ================================= */
+
+  /* Main page background */
+  --color-bg: #f5efe8;
+
+  /* Cards and panels */
+  --color-surface: #fffdf9;
+  --color-surface-raised: #ffffff;
+
+  --color-surface-hover: #faf5f0;
+  --color-surface-active: #f1e9e1;
+
+
+  /* ================================
+     Borders
+  ================================= */
+
+  --color-border: #e5d8cf;
+  --color-border-light: #eee5de;
+  --color-border-strong: #d4c4ba;
+
+
+  /* ================================
+     Text
+  ================================= */
+
+  --color-text: #302b2b;
+  --color-text-secondary: #5f5655;
+  --color-text-muted: #857a78;
+  --color-text-placeholder: #aaa09d;
+  --color-text-inverse: #ffffff;
+
+
+  /* ================================
+     Editor
+  ================================= */
+
+  --color-editor-bg: #fffefa;
+  --color-editor-text: #332f2f;
+  --color-editor-line: #f1e8e2;
+
+  --color-editor-selection: #f2cdd5;
+
+
+  /* ================================
+     Overlay
+  ================================= */
+
+  --color-overlay: rgb(48 43 43 / 0.35);
+
+
+  /* ================================
+     Spacing
+  ================================= */
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+
+  /* ================================
+     Border Radius
+  ================================= */
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 9999px;
+
+
+  /* ================================
+     Borders
+  ================================= */
+
+  --border-width: 1px;
+  --border-width-strong: 2px;
+
+
+  /* ================================
+     Shadows
+  ================================= */
+
+  --shadow-xs:
+    0 1px 2px rgb(72 55 55 / 0.04);
+
+  --shadow-sm:
+    0 1px 3px rgb(72 55 55 / 0.06),
+    0 1px 2px rgb(72 55 55 / 0.04);
+
+  --shadow-md:
+    0 4px 12px rgb(72 55 55 / 0.08);
+
+  --shadow-lg:
+    0 10px 25px rgb(72 55 55 / 0.10);
+
+  --shadow-focus:
+    0 0 0 3px rgb(199 123 138 / 0.18);
+
+
+  /* ================================
+     Layout
+  ================================= */
+
+  --app-max-width: 1440px;
+
+  --header-height: 72px;
+  --toolbar-height: 56px;
+  --status-bar-height: 40px;
+
+  --workspace-gap: var(--space-4);
+  --panel-min-height: 480px;
+
+
+  /* ================================
+     Components
+  ================================= */
+
+  --button-height: 38px;
+  --button-height-sm: 32px;
+  --button-height-lg: 44px;
+
+  --icon-button-size: 38px;
+
+  --panel-header-height: 64px;
+
+  --editor-padding: var(--space-4);
+
+  --toast-width: 360px;
+
+
+  /* ================================
+     Transitions
+  ================================= */
+
+  --transition-fast: 120ms ease;
+  --transition-base: 180ms ease;
+  --transition-slow: 250ms ease;
+
+  --transition-colors:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+
+  --transition-transform:
+    transform var(--transition-fast);
+
+  --transition-shadow:
+    box-shadow var(--transition-base);
+
+
+  /* ================================
+     Z-Index
+  ================================= */
+
+  --z-base: 1;
+  --z-header: 10;
+  --z-toolbar: 20;
+  --z-dropdown: 100;
+  --z-overlay: 500;
+  --z-toast: 1000;
+}
+
+
+/* ====================================
+   Dark Theme
+==================================== */
+
+[data-theme="dark"] {
+  /* ================================
+     Brand
+  ================================= */
+
+  --color-primary: #d99aa6;
+  --color-primary-hover: #e3abb5;
+  --color-primary-active: #edbcc5;
+
+  --color-primary-soft: #402d32;
+  --color-primary-text: #e5adb7;
+
+
+  /* ================================
+     Semantic Colors
+  ================================= */
+
+  /* Soft Green */
+  --color-success: #91bd9c;
+  --color-success-hover: #a4caaa;
+  --color-success-soft: #29372d;
+
+  /* Rose */
+  --color-danger: #e59aa7;
+  --color-danger-hover: #ecaeba;
+  --color-danger-soft: #422b30;
+
+  /* Peach */
+  --color-warning: #e2b487;
+  --color-warning-hover: #e9c298;
+  --color-warning-soft: #403327;
+
+  /* Dusty Rose */
+  --color-info: #d0a0a8;
+  --color-info-soft: #3c2d30;
+
+
+  /* ================================
+     Dark Surfaces
+  ================================= */
+
+  --color-bg: #211d1c;
+
+  --color-surface: #2a2524;
+  --color-surface-raised: #322c2b;
+
+  --color-surface-hover: #393231;
+  --color-surface-active: #423a38;
+
+
+  /* ================================
+     Borders
+  ================================= */
+
+  --color-border: #443b39;
+  --color-border-light: #38312f;
+  --color-border-strong: #554a47;
+
+
+  /* ================================
+     Text
+  ================================= */
+
+  --color-text: #f5efea;
+  --color-text-secondary: #d1c8c4;
+  --color-text-muted: #a59a96;
+  --color-text-placeholder: #756b68;
+  --color-text-inverse: #292321;
+
+
+  /* ================================
+     Editor
+  ================================= */
+
+  --color-editor-bg: #241f1e;
+  --color-editor-text: #e3dbd7;
+  --color-editor-line: #352e2c;
+
+  --color-editor-selection: #5a3c43;
+
+
+  /* ================================
+     Overlay
+  ================================= */
+
+  --color-overlay: rgb(0 0 0 / 0.65);
+
+
+  /* ================================
+     Shadows
+  ================================= */
+
+  --shadow-xs:
+    0 1px 2px rgb(0 0 0 / 0.20);
+
+  --shadow-sm:
+    0 1px 3px rgb(0 0 0 / 0.25),
+    0 1px 2px rgb(0 0 0 / 0.18);
+
+  --shadow-md:
+    0 4px 12px rgb(0 0 0 / 0.28);
+
+  --shadow-lg:
+    0 10px 25px rgb(0 0 0 / 0.34);
+
+  --shadow-focus:
+    0 0 0 3px rgb(217 154 166 / 0.20);
+}
+
+
+/* ====================================
+   Reduced Motion
+==================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+  }
+}

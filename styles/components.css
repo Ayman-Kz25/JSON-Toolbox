@@ -1,0 +1,578 @@
+/* ====================================
+   Header
+==================================== */
+
+.header {
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+
+/* ====================================
+   Brand
+==================================== */
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-sm);
+
+  font-size: var(--font-size-lg);
+}
+
+.brand-info h1 {
+  color: var(--color-text);
+
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.brand-info p {
+  margin-top: var(--space-1);
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-tight);
+}
+
+
+/* ====================================
+   Icon Button
+==================================== */
+
+.icon-btn {
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+}
+
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+.icon-btn:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+
+/* ====================================
+   Toolbar
+==================================== */
+
+.toolbar {
+  padding: var(--space-3) 0;
+}
+
+
+/* ====================================
+   Tool Buttons
+==================================== */
+
+.tool-btn {
+  min-height: var(--button-height);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--space-2);
+
+  padding: 0 var(--space-3);
+
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+
+  white-space: nowrap;
+
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-fast);
+}
+
+.tool-btn i {
+  font-size: var(--font-size-sm);
+}
+
+.tool-btn:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+}
+
+.tool-btn:active {
+  transform: translateY(1px);
+}
+
+.tool-btn:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+.tool-btn:disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+
+/* ====================================
+   Primary Button
+==================================== */
+
+.tool-btn.primary {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.tool-btn.primary:hover {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+
+/* ====================================
+   Danger Button
+==================================== */
+
+.tool-btn.danger {
+  color: var(--color-danger);
+}
+
+.tool-btn.danger:hover {
+  color: var(--color-danger-hover);
+  background-color: var(--color-danger-soft);
+  border-color: var(--color-danger);
+}
+
+
+/* ====================================
+   Panel
+==================================== */
+
+.editor-panel {
+  overflow: hidden;
+
+  background-color: var(--color-surface);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-xs);
+
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.editor-panel:focus-within {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* ====================================
+   Panel Header
+==================================== */
+
+.panel-header {
+  padding: 0 var(--space-4);
+
+  border-bottom: var(--border-width) solid var(--color-border-light);
+
+  background-color: var(--color-surface);
+
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+
+/* ====================================
+   Panel Title
+==================================== */
+
+.panel-title > i {
+  width: 32px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-size-sm);
+}
+
+.panel-title h2 {
+  color: var(--color-text);
+
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.panel-title span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-tight);
+}
+
+
+/* ====================================
+   Statistics
+==================================== */
+
+.stats {
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+}
+
+
+/* ====================================
+   Result Panel
+==================================== */
+
+.result-panel .panel-title > i {
+  color: var(--color-success);
+  background-color: var(--color-success-soft);
+}
+
+
+/* ====================================
+   Result Actions
+==================================== */
+
+.result-actions {
+  padding: var(--space-3) var(--space-4);
+
+  border-top: var(--border-width) solid var(--color-border-light);
+
+  background-color: var(--color-surface);
+
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base);
+}
+
+
+/* ====================================
+   Error Message
+==================================== */
+
+.error-message {
+  display: flex;
+  align-items: flex-start;
+
+  gap: var(--space-3);
+
+  margin: var(--space-3) var(--space-4) 0;
+  padding: var(--space-3);
+
+  color: var(--color-danger);
+  background-color: var(--color-danger-soft);
+
+  border: var(--border-width) solid
+    color-mix(
+      in srgb,
+      var(--color-danger) 25%,
+      transparent
+    );
+
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-size-sm);
+}
+
+.error-message > i {
+  flex-shrink: 0;
+
+  margin-top: 2px;
+
+  font-size: var(--font-size-base);
+}
+
+.error-message strong {
+  display: block;
+
+  font-weight: var(--font-weight-semibold);
+}
+
+.error-message span {
+  display: block;
+
+  margin-top: var(--space-1);
+
+  color: var(--color-text-secondary);
+
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+
+/* ====================================
+   Status Bar
+==================================== */
+
+.status-bar {
+  margin-top: auto;
+  padding: var(--space-2) 0;
+
+  color: var(--color-text-muted);
+
+  font-size: var(--font-size-xs);
+}
+
+.status-item {
+  white-space: nowrap;
+}
+
+.status-divider {
+  width: 1px;
+  height: 14px;
+
+  display: block;
+
+  background-color: var(--color-border-strong);
+}
+
+
+/* ====================================
+   Status Indicator
+==================================== */
+
+.status-indicator {
+  width: 7px;
+  height: 7px;
+
+  display: inline-block;
+
+  flex-shrink: 0;
+
+  background-color: var(--color-success);
+
+  border-radius: var(--radius-full);
+
+  box-shadow: 0 0 0 3px var(--color-success-soft);
+}
+
+
+/* Status States */
+
+.status-indicator.valid {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-soft);
+}
+
+.status-indicator.invalid {
+  background-color: var(--color-danger);
+  box-shadow: 0 0 0 3px var(--color-danger-soft);
+}
+
+.status-indicator.warning {
+  background-color: var(--color-warning);
+  box-shadow: 0 0 0 3px var(--color-warning-soft);
+}
+
+
+/* ====================================
+   Toast Container
+==================================== */
+
+.toast-container {
+  position: fixed;
+
+  right: var(--space-6);
+  bottom: var(--space-6);
+
+  z-index: var(--z-toast);
+
+  width: min(
+    var(--toast-width),
+    calc(100vw - (var(--space-6) * 2))
+  );
+
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--space-2);
+
+  pointer-events: none;
+}
+
+
+/* ====================================
+   Toast
+==================================== */
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+
+  gap: var(--space-3);
+
+  padding: var(--space-3) var(--space-4);
+
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-lg);
+
+  font-size: var(--font-size-sm);
+
+  pointer-events: auto;
+
+  animation: toast-in var(--transition-slow) ease-out;
+}
+
+.toast-icon {
+  flex-shrink: 0;
+
+  font-size: var(--font-size-base);
+}
+
+.toast-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.toast-title {
+  display: block;
+
+  margin-bottom: var(--space-1);
+
+  font-weight: var(--font-weight-semibold);
+}
+
+.toast-message {
+  color: var(--color-text-secondary);
+
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+}
+
+
+/* ====================================
+   Toast States
+==================================== */
+
+.toast.success {
+  border-left: 3px solid var(--color-success);
+}
+
+.toast.success .toast-icon {
+  color: var(--color-success);
+}
+
+.toast.error {
+  border-left: 3px solid var(--color-danger);
+}
+
+.toast.error .toast-icon {
+  color: var(--color-danger);
+}
+
+.toast.warning {
+  border-left: 3px solid var(--color-warning);
+}
+
+.toast.warning .toast-icon {
+  color: var(--color-warning);
+}
+
+.toast.info {
+  border-left: 3px solid var(--color-info);
+}
+
+.toast.info .toast-icon {
+  color: var(--color-info);
+}
+
+
+/* ====================================
+   Toast Animation
+==================================== */
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ====================================
+   Reduced Motion
+==================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+}

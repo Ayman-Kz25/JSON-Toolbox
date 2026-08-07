@@ -1,0 +1,372 @@
+/* ====================================
+   Large Screens
+==================================== */
+
+@media (max-width: 1200px) {
+  .app {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .workspace {
+    gap: var(--space-3);
+  }
+}
+
+
+/* ====================================
+   Tablets / Smaller Desktops
+==================================== */
+
+@media (max-width: 900px) {
+  .header {
+    min-height: 64px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+  }
+
+  .toolbar-group {
+    flex-wrap: wrap;
+  }
+
+  /*
+    Stack the input and result panels.
+  */
+
+  .workspace {
+    grid-template-columns: 1fr;
+
+    gap: var(--space-4);
+  }
+
+  .editor-panel {
+    min-height: 420px;
+  }
+
+  /*
+    Keep the result panel from becoming
+    excessively tall on smaller screens.
+  */
+
+  .result-panel {
+    min-height: 420px;
+  }
+}
+
+
+/* ====================================
+   Mobile
+==================================== */
+
+@media (max-width: 600px) {
+  .app {
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+
+  /* -------------------------------
+     Header
+  -------------------------------- */
+
+  .header {
+    min-height: 60px;
+
+    gap: var(--space-3);
+  }
+
+  .brand {
+    gap: var(--space-2);
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+  }
+
+  .brand-info h1 {
+    font-size: var(--font-size-lg);
+  }
+
+  .brand-info p {
+    display: none;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+
+  /* -------------------------------
+     Toolbar
+  -------------------------------- */
+
+  .toolbar {
+    align-items: stretch;
+
+    gap: var(--space-2);
+  }
+
+  .toolbar-group {
+    flex: 1;
+
+    gap: var(--space-2);
+  }
+
+  .toolbar-group:last-child {
+    justify-content: flex-end;
+  }
+
+  .tool-btn {
+    min-height: var(--button-height);
+
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+
+    font-size: var(--font-size-xs);
+  }
+
+  .tool-btn i {
+    font-size: var(--font-size-xs);
+  }
+
+
+  /* -------------------------------
+     Workspace
+  -------------------------------- */
+
+  .workspace {
+    gap: var(--space-3);
+  }
+
+  .editor-panel,
+  .result-panel {
+    min-height: 360px;
+  }
+
+
+  /* -------------------------------
+     Panel Header
+  -------------------------------- */
+
+  .panel-header {
+    min-height: 58px;
+
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+
+    gap: var(--space-2);
+  }
+
+  .panel-title {
+    gap: var(--space-2);
+  }
+
+  .panel-title > i {
+    width: 28px;
+    height: 28px;
+
+    font-size: var(--font-size-xs);
+  }
+
+  .panel-title h2 {
+    font-size: var(--font-size-sm);
+  }
+
+  .panel-title span {
+    font-size: 0.6875rem;
+  }
+
+  .stats {
+    font-size: 0.6875rem;
+  }
+
+
+  /* -------------------------------
+     Editor
+  -------------------------------- */
+
+  .json-editor {
+    padding: var(--space-3);
+
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+
+
+  /* -------------------------------
+     Result Actions
+  -------------------------------- */
+
+  .result-actions {
+    padding: var(--space-2) var(--space-3);
+
+    justify-content: stretch;
+  }
+
+  .result-actions .tool-btn {
+    flex: 1;
+  }
+
+
+  /* -------------------------------
+     Error Message
+  -------------------------------- */
+
+  .error-message {
+    margin-left: var(--space-3);
+    margin-right: var(--space-3);
+
+    padding: var(--space-2) var(--space-3);
+  }
+
+
+  /* -------------------------------
+     Status Bar
+  -------------------------------- */
+
+  .status-bar {
+    min-height: 36px;
+
+    gap: var(--space-2);
+
+    font-size: 0.6875rem;
+  }
+
+  .status-item {
+    gap: var(--space-1);
+  }
+}
+
+
+/* ====================================
+   Small Mobile
+==================================== */
+
+@media (max-width: 480px) {
+  .app {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+
+  /* -------------------------------
+     Toolbar
+  -------------------------------- */
+
+  .toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar-group {
+    width: 100%;
+  }
+
+  .toolbar-group:last-child {
+    justify-content: stretch;
+  }
+
+  .toolbar-group .tool-btn {
+    flex: 1;
+  }
+
+
+  /* -------------------------------
+     Workspace
+  -------------------------------- */
+
+  .editor-panel,
+  .result-panel {
+    min-height: 320px;
+  }
+
+
+  /* -------------------------------
+     Panel Header
+  -------------------------------- */
+
+  .panel-header {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .panel-title > i {
+    display: none;
+  }
+
+  .panel-title span {
+    display: none;
+  }
+
+
+  /* -------------------------------
+     Result Actions
+  -------------------------------- */
+
+  .result-actions {
+    flex-direction: column;
+  }
+
+  .result-actions .tool-btn {
+    width: 100%;
+  }
+
+
+  /* -------------------------------
+     Status Bar
+  -------------------------------- */
+
+  .status-bar {
+    align-items: flex-start;
+    flex-direction: column;
+
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+}
+
+
+/* ====================================
+   Very Small Screens
+==================================== */
+
+@media (max-width: 360px) {
+  .brand-info h1 {
+    font-size: var(--font-size-md);
+  }
+
+  .toolbar-group {
+    flex-direction: column;
+  }
+
+  .toolbar-group .tool-btn {
+    width: 100%;
+  }
+
+  .editor-panel,
+  .result-panel {
+    min-height: 280px;
+  }
+}
+
+
+/* ====================================
+   Reduced Motion
+==================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
