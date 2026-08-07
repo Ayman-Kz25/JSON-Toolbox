@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="JSON Toolbox is a simple developer utility for formatting, validating, minifying, copying, and downloading JSON."
+    />
+
+    <title>JSON Toolbox</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- APP -->
+
+    <div class="app">
+      <!-- HEADER -->
+
+      <header class="header">
+        <div class="brand">
+          <div class="brand-icon">
+            <i class="fa-solid fa-code"></i>
+          </div>
+
+          <div class="brand-info">
+            <h1>JSON Toolbox</h1>
+
+            <p>Format, validate and manage your JSON.</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button
+            type="button"
+            id="themeToggle"
+            class="icon-btn"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- TOOLBAR -->
+
+      <section class="toolbar">
+        <div class="toolbar-group">
+          <button type="button" id="formatBtn" class="tool-btn primary">
+            <i class="fa-solid fa-align-left"></i>
+            Format
+          </button>
+
+          <button type="button" id="minifyBtn" class="tool-btn">
+            <i class="fa-solid fa-compress"></i>
+            Minify
+          </button>
+
+          <button type="button" id="validateBtn" class="tool-btn">
+            <i class="fa-solid fa-circle-check"></i>
+            Validate
+          </button>
+        </div>
+
+        <div class="toolbar-group">
+          <button type="button" id="uploadBtn" class="tool-btn">
+            <i class="fa-solid fa-upload"></i>
+            Upload JSON
+          </button>
+
+          <input
+            type="file"
+            id="jsonFileInput"
+            accept=".json,application/json"
+            hidden
+          />
+
+          <button type="button" id="clearBtn" class="tool-btn danger">
+            <i class="fa-solid fa-trash"></i>
+            Clear
+          </button>
+        </div>
+      </section>
+
+      <!-- MAIN WORKSPACE -->
+
+      <main class="workspace">
+        <!-- INPUT PANEL -->
+
+        <section class="editor-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fa-solid fa-file-code"></i>
+
+              <div>
+                <h2>Input</h2>
+                <span>Paste or write your JSON</span>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <span id="inputStats" class="stats"> 0 characters </span>
+            </div>
+          </div>
+
+          <div class="editor-wrapper">
+            <textarea
+              id="jsonInput"
+              class="json-editor"
+              spellcheck="false"
+              placeholder='{
+  "name": "JSON Toolbox",
+  "version": "1.0.0"
+}'
+              aria-label="JSON input"
+            ></textarea>
+          </div>
+
+          <div id="errorMessage" class="error-message" role="alert" hidden>
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <div>
+              <strong>Invalid JSON</strong>
+              <span id="errorText"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- RESULT PANEL -->
+
+        <section class="editor-panel result-panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <i class="fa-solid fa-square-check"></i>
+
+              <div>
+                <h2>Result</h2>
+                <span>Formatted or processed JSON</span>
+              </div>
+            </div>
+
+            <div class="panel-actions">
+              <span id="outputStats" class="stats"> 0 characters </span>
+            </div>
+          </div>
+
+          <div class="editor-wrapper">
+            <textarea
+              id="jsonOutput"
+              class="json-editor"
+              spellcheck="false"
+              placeholder="Your result will appear here..."
+              readonly
+              aria-label="JSON result"
+            ></textarea>
+          </div>
+
+          <div class="result-actions">
+            <button type="button" id="copyBtn" class="tool-btn">
+              <i class="fa-regular fa-copy"></i>
+              Copy
+            </button>
+
+            <button type="button" id="downloadBtn" class="tool-btn">
+              <i class="fa-solid fa-download"></i>
+              Download JSON
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <!-- STATUS BAR -->
+
+      <footer class="status-bar">
+        <div class="status-item">
+          <span id="jsonStatus" class="status-indicator"></span>
+
+          <span id="statusText"> Ready </span>
+        </div>
+
+        <div class="status-item">
+          <span id="lineCount"> 0 lines </span>
+
+          <span class="status-divider"></span>
+
+          <span id="characterCount"> 0 characters </span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+
+    <div
+      id="toastContainer"
+      class="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
