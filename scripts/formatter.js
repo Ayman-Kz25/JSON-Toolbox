@@ -1,4 +1,4 @@
-import { formatBtn, jsonInput, jsonOutput } from "./dom";
+import { formatBtn, jsonInput, jsonOutput } from "./dom.js";
 import { showToast } from "./toast.js";
 
 export function initFormatter() {
