@@ -1,4 +1,3 @@
-```js
 /* HEADER */
 export const themeToggle = document.querySelector("#themeToggle");
 
@@ -44,4 +43,3 @@ export const errorText = document.querySelector("#errorText");
 
 /* TOAST */
 export const toastContainer = document.querySelector("#toastContainer");
-```

@@ -13,7 +13,6 @@
   }
 }
 
-
 /* ====================================
    Tablets / Smaller Desktops
 ==================================== */
@@ -58,7 +57,6 @@
   }
 }
 
-
 /* ====================================
    Mobile
 ==================================== */
@@ -68,7 +66,6 @@
     padding-left: var(--space-3);
     padding-right: var(--space-3);
   }
-
 
   /* -------------------------------
      Header
@@ -106,7 +103,6 @@
     height: 36px;
   }
 
-
   /* -------------------------------
      Toolbar
   -------------------------------- */
@@ -140,7 +136,6 @@
     font-size: var(--font-size-xs);
   }
 
-
   /* -------------------------------
      Workspace
   -------------------------------- */
@@ -153,7 +148,6 @@
   .result-panel {
     min-height: 360px;
   }
-
 
   /* -------------------------------
      Panel Header
@@ -191,7 +185,6 @@
     font-size: 0.6875rem;
   }
 
-
   /* -------------------------------
      Editor
   -------------------------------- */
@@ -202,7 +195,6 @@
     font-size: 0.75rem;
     line-height: 1.7;
   }
-
 
   /* -------------------------------
      Result Actions
@@ -218,7 +210,6 @@
     flex: 1;
   }
 
-
   /* -------------------------------
      Error Message
   -------------------------------- */
@@ -229,7 +220,6 @@
 
     padding: var(--space-2) var(--space-3);
   }
-
 
   /* -------------------------------
      Status Bar
@@ -248,7 +238,6 @@
   }
 }
 
-
 /* ====================================
    Small Mobile
 ==================================== */
@@ -258,7 +247,6 @@
     padding-left: var(--space-2);
     padding-right: var(--space-2);
   }
-
 
   /* -------------------------------
      Toolbar
@@ -281,7 +269,6 @@
     flex: 1;
   }
 
-
   /* -------------------------------
      Workspace
   -------------------------------- */
@@ -290,7 +277,6 @@
   .result-panel {
     min-height: 320px;
   }
-
 
   /* -------------------------------
      Panel Header
@@ -309,7 +295,6 @@
     display: none;
   }
 
-
   /* -------------------------------
      Result Actions
   -------------------------------- */
@@ -321,7 +306,6 @@
   .result-actions .tool-btn {
     width: 100%;
   }
-
 
   /* -------------------------------
      Status Bar
@@ -335,7 +319,6 @@
     padding-bottom: var(--space-2);
   }
 }
-
 
 /* ====================================
    Very Small Screens
@@ -360,7 +343,6 @@
   }
 }
 
-
 /* ====================================
    Reduced Motion
 ==================================== */
@@ -368,5 +350,36 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* ====================================
+   Responsive
+==================================== */
+
+@media (max-width: 768px) {
+  .converter-group {
+    width: 100%;
+  }
+
+  .conversion-select {
+    flex: 1;
+  }
+
+  .tool-btn.convert {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .converter-group {
+    flex-direction: column;
+  }
+
+  .conversion-select,
+  .tool-btn.convert {
+    width: 100%;
+    text-align: center;
+  padding: 8px var(--space-3)
   }
 }

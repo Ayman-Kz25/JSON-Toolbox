@@ -1,33 +1,34 @@
-import { jsonInput, validateBtn } from "./dom.js";
+import { validateBtn, jsonInput, jsonOutput } from "./dom.js";
+import { updateStats } from "./stats.js";
 import { showToast } from "./toast.js";
 
-export function initValidator(){
-    if(!validateBtn) return;
+export function initValidator() {
+  if (!validateBtn) return;
 
-    validateBtn.addEventListener("click", validateJSON);
-}
-export function validateJSON(){
-    const input = jsonInput.value.trim();
-
-    if(!input){
-        showToast("Please enter some JSON first.", "warning");
-        return;
-    }
-
-    try {
-        JSON.parse(input);
-        showToast("Valid JSON.", "success");
-    } catch (error) {
-        const message = getReadableError(error)
-        showToast(`Invalid JSON: ${message}`, "error");
-        console.log("JSON validation error:", error);
-    }
+  validateBtn.addEventListener("click", validateJSON);
 }
 
-function getReadableError(error){
-    if(!error?.message){
-        return "Check your JSON syntax."
-    }
+export function validateJSON() {
+  const input = jsonInput.value.trim();
 
-    return error.message.replace(/^JSON\.parse:\s*/i, "").replace(/^Unexpected token\s*/i, "Unexpected token ");
+  if (!input) {
+    showToast("Please enter some JSON first.", "warning");
+    return false;
+  }
+
+  try {
+    JSON.parse(input);
+
+    updateStats();
+
+    showToast("Valid JSON.", "success");
+
+    return true;
+  } catch (error) {
+    showToast("Invalid JSON. Please check your syntax.", "error");
+
+    console.error("JSON validation error:", error);
+
+    return false;
+  }
 }

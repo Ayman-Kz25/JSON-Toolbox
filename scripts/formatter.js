@@ -1,4 +1,5 @@
 import { formatBtn, jsonInput, jsonOutput } from "./dom.js";
+import { updateStats } from "./stats.js";
 import { showToast } from "./toast.js";
 
 export function initFormatter() {
@@ -12,7 +13,6 @@ export function formatJSON() {
 
   if (!input) {
     showToast("Please enter some JSON first.", "warning");
-
     return;
   }
 
@@ -23,10 +23,14 @@ export function formatJSON() {
 
     jsonOutput.value = formattedJSON;
 
+    updateStats();
+
     showToast("JSON formatted successfully.", "success");
   } catch (error) {
     jsonOutput.value = "";
+
     showToast("Invalid JSON. Please check your syntax.", "error");
+
     console.error("JSON formatting error:", error);
   }
 }

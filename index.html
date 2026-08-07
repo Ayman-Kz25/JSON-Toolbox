@@ -82,6 +82,19 @@
             <i class="fa-solid fa-circle-check"></i>
             Validate
           </button>
+
+          <div class="converter-group">
+            <select id="conversionType" class="conversion-select">
+              <option value="csv">JSON → CSV</option>
+              <option value="xml">JSON → XML</option>
+              <option value="yaml">JSON → YAML</option>
+            </select>
+
+            <button type="button" id="convertBtn" class="tool-btn">
+              <i class="fa-solid fa-arrows-rotate"></i>
+              Convert
+            </button>
+          </div>
         </div>
 
         <div class="toolbar-group">
@@ -218,6 +231,10 @@
       aria-live="polite"
       aria-atomic="true"
     ></div>
+
+    
+    <!-- YAML Support -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
 
     <script type="module" src="./script.js"></script>
   </body>

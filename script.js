@@ -1,13 +1,25 @@
+import { initClear } from "./scripts/clear.js";
+import { initClipboard } from "./scripts/clipboard.js";
 import { initConverter } from "./scripts/converter.js";
+import { initDownloader } from "./scripts/download.js";
 import {initFormatter} from "./scripts/formatter.js";
 import { initMinifier } from "./scripts/minifier.js";
+import { initStats } from "./scripts/stats.js";
+import { initTheme } from "./scripts/theme.js";
+import { initUploader } from "./scripts/upload.js";
 import { initValidator } from "./scripts/validator.js";
 
 function initApp(){
     initFormatter();
     initMinifier();
-    initConverter();
     initValidator();
+    initClipboard();
+    initDownloader();
+    initConverter();
+    initTheme();
+    initUploader();
+    initClear();
+    initStats();
 }
 
 initApp();
