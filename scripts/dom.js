@@ -4,6 +4,7 @@ export const themeToggle = document.querySelector("#themeToggle");
 /* JSON EDITOR */
 export const jsonInput = document.querySelector("#jsonInput");
 export const jsonOutput = document.querySelector("#jsonOutput");
+export const lineNumbers = document.querySelector("#lineNumbers");
 
 /* FORMAT / VALIDATE / MINIFY */
 export const formatBtn = document.querySelector("#formatBtn");

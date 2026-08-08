@@ -7,8 +7,7 @@
 
     <meta
       name="description"
-      content="JSON Toolbox is a simple developer utility for formatting, validating, minifying, copying, and downloading JSON."
-    />
+      content="JSON Toolbox is a simple developer utility for formatting, validating, minifying, copying, and downloading JSON." />
 
     <title>JSON Toolbox</title>
 
@@ -19,20 +18,20 @@
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="./style.css" />
 
     <!-- Favicon -->
-     <link rel="shortcut icon" href="https://res.cloudinary.com/dhjf7rok5/image/upload/v1786127962/samples/json_d2tdnq.png" type="image/x-icon">
+    <link rel="shortcut icon"
+      href="https://res.cloudinary.com/dhjf7rok5/image/upload/v1786127962/samples/json_d2tdnq.png"
+      type="image/x-icon">
   </head>
 
   <body>
@@ -60,8 +59,7 @@
             id="themeToggle"
             class="icon-btn"
             aria-label="Toggle theme"
-            title="Toggle theme"
-          >
+            title="Toggle theme">
             <i class="fa-solid fa-moon"></i>
           </button>
         </div>
@@ -110,8 +108,7 @@
             type="file"
             id="jsonFileInput"
             accept=".json,application/json"
-            hidden
-          />
+            hidden />
 
           <button type="button" id="clearBtn" class="tool-btn danger">
             <i class="fa-solid fa-trash"></i>
@@ -141,27 +138,38 @@
             </div>
           </div>
 
-          <div class="editor-wrapper">
-            <textarea
-              id="jsonInput"
-              class="json-editor"
-              spellcheck="false"
-              placeholder='{
+            <div class="editor-container">
+
+              <div
+                id="lineNumbers"
+                class="line-numbers"
+                aria-hidden="true"></div>
+
+              <textarea
+                id="jsonInput"
+                class="json-editor"
+                spellcheck="false"
+                placeholder='{
   "name": "JSON Toolbox",
   "version": "1.0.0"
 }'
-              aria-label="JSON input"
-            ></textarea>
-          </div>
+                aria-label="JSON input"></textarea>
 
-          <div id="errorMessage" class="error-message" role="alert" hidden>
-            <i class="fa-solid fa-circle-exclamation"></i>
-
-            <div>
-              <strong>Invalid JSON</strong>
-              <span id="errorText"></span>
             </div>
-          </div>
+
+            <div
+              id="errorMessage"
+              class="error-message"
+              role="alert"
+              hidden>
+              <i class="fa-solid fa-circle-exclamation"></i>
+
+              <div>
+                <strong>Invalid JSON</strong>
+                <span id="errorText"></span>
+              </div>
+            </div>
+
         </section>
 
         <!-- RESULT PANEL -->
@@ -189,8 +197,7 @@
               spellcheck="false"
               placeholder="Your result will appear here..."
               readonly
-              aria-label="JSON result"
-            ></textarea>
+              aria-label="JSON result"></textarea>
           </div>
 
           <div class="result-actions">
@@ -232,12 +239,11 @@
       id="toastContainer"
       class="toast-container"
       aria-live="polite"
-      aria-atomic="true"
-    ></div>
+      aria-atomic="true"></div>
 
-    
     <!-- YAML Support -->
-    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
 
     <script type="module" src="./script.js"></script>
   </body>
