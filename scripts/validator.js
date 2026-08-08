@@ -16,15 +16,27 @@ import { showToast } from "./toast.js";
 export function initValidator() {
   if (!validateBtn) return;
 
-  validateBtn.addEventListener("click", validateJSON);
+  validateBtn.addEventListener(
+    "click",
+    validateJSON
+  );
 }
 
 export function validateJSON() {
-  const input = jsonInput.value.trim();
+  if (!jsonInput) return;
+
+  /*
+   * Keep the original input unchanged.
+   * JSON error positions depend on the exact
+   * character positions in the original text.
+   */
+  const input = jsonInput.value;
 
   // Empty input
-  if (!input) {
-    jsonOutput.value = "";
+  if (!input.trim()) {
+    if (jsonOutput) {
+      jsonOutput.value = "";
+    }
 
     clearJSONError();
     updateStats();
@@ -47,7 +59,6 @@ export function validateJSON() {
 
     // JSON is valid
     clearJSONError();
-
     updateStats();
 
     initStatus(
@@ -62,7 +73,9 @@ export function validateJSON() {
 
   } catch (error) {
     // JSON is invalid
-    jsonOutput.value = "";
+    if (jsonOutput) {
+      jsonOutput.value = "";
+    }
 
     const errorPosition = showJSONError(
       error,
@@ -71,7 +84,8 @@ export function validateJSON() {
 
     updateStats();
 
-    const line = errorPosition?.line ?? 1;
+    const line =
+      errorPosition?.line ?? 1;
 
     initStatus(
       `JSON error on line ${line}.`,
