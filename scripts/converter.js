@@ -45,7 +45,7 @@ export function convertJSON() {
     }
 
     jsonOutput.value = result;
-  
+
     setDownloadFormat(type);
 
     updateStats();
@@ -81,14 +81,20 @@ function convertToCSV(data) {
     return "";
   }
 
-  const headers = Object.keys(data[0]);
+  const headers = [
+    ...new Set(
+      data.flatMap((item) =>
+        item && typeof item === "object" ? Object.keys(item) : [],
+      ),
+    ),
+  ];
 
   const rows = data.map((item) =>
     headers
       .map((header) => {
-        let value = item[header] ?? "";
+        let value = item?.[header] ?? "";
 
-        if (typeof value === "object") {
+        if (typeof value === "object" && value !== null) {
           value = JSON.stringify(value);
         }
 
@@ -97,7 +103,7 @@ function convertToCSV(data) {
       .join(","),
   );
 
-  return [headers.join(","), ...rows].join("\n");
+  return [headers.map((header) => `"${header.replaceAll('"', '""')}"`).join(","), ...rows].join("\n");
 }
 
 /* ====================================
