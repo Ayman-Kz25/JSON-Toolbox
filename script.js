@@ -3,6 +3,7 @@ import { initClipboard } from "./scripts/clipboard.js";
 import { initConverter } from "./scripts/converter.js";
 import { initDownloader } from "./scripts/download.js";
 import {initFormatter} from "./scripts/formatter.js";
+import { initLineNumbers } from "./scripts/line-numbers.js";
 import { initMinifier } from "./scripts/minifier.js";
 import { initStats } from "./scripts/stats.js";
 import { initStatus } from "./scripts/status.js";
@@ -24,6 +25,7 @@ function initApp(){
     initStats();
     initStatus();
     initToolState();
+    initLineNumbers();
 }
 
 initApp();

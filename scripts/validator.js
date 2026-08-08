@@ -1,4 +1,14 @@
-import { validateBtn, jsonInput, jsonOutput } from "./dom.js";
+import {
+  validateBtn,
+  jsonInput,
+  jsonOutput,
+} from "./dom.js";
+
+import {
+  showJSONError,
+  clearJSONError,
+} from "./json-error.js";
+
 import { updateStats } from "./stats.js";
 import { initStatus } from "./status.js";
 import { showToast } from "./toast.js";
@@ -12,26 +22,70 @@ export function initValidator() {
 export function validateJSON() {
   const input = jsonInput.value.trim();
 
+  // Empty input
   if (!input) {
-    showToast("Please enter some JSON first.", "warning");
-    return false;
+    jsonOutput.value = "";
+
+    clearJSONError();
+    updateStats();
+
+    initStatus(
+      "Waiting for JSON input.",
+      "warning"
+    );
+
+    showToast(
+      "Please enter some JSON first.",
+      "warning"
+    );
+
+    return;
   }
 
   try {
     JSON.parse(input);
 
+    // JSON is valid
+    clearJSONError();
+
     updateStats();
 
-    initStatus("Valid JSON.", "success");
+    initStatus(
+      "Valid JSON.",
+      "success"
+    );
 
-    showToast("Valid JSON.", "success");
+    showToast(
+      "JSON is valid.",
+      "success"
+    );
 
-    return true;
   } catch (error) {
-    showToast("Invalid JSON. Please check your syntax.", "error");
+    // JSON is invalid
+    jsonOutput.value = "";
 
-    console.error("JSON validation error:", error);
+    const errorPosition = showJSONError(
+      error,
+      input
+    );
 
-    return false;
+    updateStats();
+
+    const line = errorPosition?.line ?? 1;
+
+    initStatus(
+      `JSON error on line ${line}.`,
+      "invalid"
+    );
+
+    showToast(
+      `Invalid JSON on line ${line}.`,
+      "error"
+    );
+
+    console.error(
+      "JSON validation error:",
+      error
+    );
   }
 }

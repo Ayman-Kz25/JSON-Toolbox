@@ -22,9 +22,9 @@ export function initFormatter() {
 
 
 export function formatJSON() {
-  const input = jsonInput.value.trim();
+  const input = jsonInput.value;
 
-  if (!input) {
+  if (!input.trim()) {
     jsonOutput.value = "";
 
     clearJSONError();
