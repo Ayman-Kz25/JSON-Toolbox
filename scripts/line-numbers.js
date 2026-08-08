@@ -3,6 +3,7 @@ import {
   lineNumbers,
 } from "./dom.js";
 
+
 export function initLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
 
@@ -17,30 +18,45 @@ export function initLineNumbers() {
     "scroll",
     syncLineNumbers
   );
+
+  jsonInput.addEventListener(
+    "keydown",
+    handleEditorKeydown
+  );
 }
+
+
+/* ====================================
+   Update Line Numbers
+==================================== */
 
 export function updateLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
 
-  const lineCount = Math.max(
-    jsonInput.value.split("\n").length,
-    1
-  );
+  const lines = jsonInput.value.split("\n").length;
 
-  lineNumbers.innerHTML = "";
+  let html = "";
 
-  for (let i = 1; i <= lineCount; i++) {
-    const line = document.createElement("div");
-
-    line.className = "line-number";
-    line.dataset.line = i;
-    line.textContent = i;
-
-    lineNumbers.appendChild(line);
+  for (let i = 1; i <= lines; i++) {
+    html += `
+      <div
+        class="line-number"
+        data-line="${i}"
+      >
+        ${i}
+      </div>
+    `;
   }
+
+  lineNumbers.innerHTML = html;
 
   syncLineNumbers();
 }
+
+
+/* ====================================
+   Sync Scroll
+==================================== */
 
 export function syncLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
@@ -48,27 +64,65 @@ export function syncLineNumbers() {
   lineNumbers.scrollTop = jsonInput.scrollTop;
 }
 
-export function highlightErrorLine(lineNumber) {
+
+/* ====================================
+   Editor Keyboard Handling
+==================================== */
+
+function handleEditorKeydown(event) {
+  if (!jsonInput) return;
+
+  if (event.key === "Tab") {
+    event.preventDefault();
+
+    const start = jsonInput.selectionStart;
+    const end = jsonInput.selectionEnd;
+
+    jsonInput.value =
+      jsonInput.value.substring(0, start) +
+      "  " +
+      jsonInput.value.substring(end);
+
+    jsonInput.selectionStart = start + 2;
+    jsonInput.selectionEnd = start + 2;
+
+    updateLineNumbers();
+  }
+}
+
+
+/* ====================================
+   Highlight Error Line
+==================================== */
+
+export function highlightErrorLine(line) {
   if (!lineNumbers) return;
 
   clearErrorLine();
 
-  const line = lineNumbers.querySelector(
-    `[data-line="${lineNumber}"]`
-  );
+  if (!line || line < 1) return;
 
-  if (line) {
-    line.classList.add("error");
-  }
+  const lineElement =
+    lineNumbers.querySelector(
+      `[data-line="${line}"]`
+    );
+
+  if (!lineElement) return;
+
+  lineElement.classList.add("error");
 }
+
+
+/* ====================================
+   Clear Error Line
+==================================== */
 
 export function clearErrorLine() {
   if (!lineNumbers) return;
 
-  const errorLine =
-    lineNumbers.querySelector(".line-number.error");
-
-  if (errorLine) {
-    errorLine.classList.remove("error");
-  }
+  lineNumbers
+    .querySelectorAll(".line-number.error")
+    .forEach((element) => {
+      element.classList.remove("error");
+    });
 }

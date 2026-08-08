@@ -1,12 +1,26 @@
-import { downloadBtn, jsonOutput } from "./dom.js";
+import {
+  downloadBtn,
+  jsonOutput,
+} from "./dom.js";
+
 import { showToast } from "./toast.js";
 
+
+/* ====================================
+   Current Download Format
+==================================== */
+
 let currentFormat = "json";
+
+
+/* ====================================
+   File Configuration
+==================================== */
 
 const fileConfig = {
   json: {
     extension: "json",
-    mime: "application/json",
+    mime: "application/json;charset=utf-8",
   },
 
   csv: {
@@ -25,47 +39,98 @@ const fileConfig = {
   },
 };
 
+
+/* ====================================
+   Initialize Downloader
+==================================== */
+
 export function initDownloader() {
   if (!downloadBtn) return;
 
-  downloadBtn.addEventListener("click", downloadFile);
+  downloadBtn.addEventListener(
+    "click",
+    downloadFile
+  );
 }
 
-export function setDownloadFormat(format = "json") {
-  const normalizedFormat = String(format).toLowerCase();
+
+/* ====================================
+   Set Download Format
+==================================== */
+
+/**
+ * Sets the format used when downloading
+ * the current output.
+ *
+ * Used by converter.js.
+ */
+
+export function setDownloadFormat(
+  format = "json"
+) {
+  const normalizedFormat =
+    String(format).trim().toLowerCase();
 
   if (fileConfig[normalizedFormat]) {
     currentFormat = normalizedFormat;
   }
 }
 
+
+/* ====================================
+   Download File
+==================================== */
+
 export function downloadFile() {
-  const output = jsonOutput?.value.trim();
+  const output =
+    jsonOutput?.value.trim();
 
   if (!output) {
-    showToast("There is no content to download.", "warning");
+    showToast(
+      "There is no content to download.",
+      "warning"
+    );
+
     return;
   }
 
-  const config = fileConfig[currentFormat];
+
+  const config =
+    fileConfig[currentFormat];
 
   if (!config) {
-    showToast("Unspported download format.", "error");
+    showToast(
+      "Unsupported download format.",
+      "error"
+    );
+
     return;
   }
 
+
   try {
-    const blob = new Blob([output], {
-      type: config.mime,
-    });
+    const blob = new Blob(
+      [output],
+      {
+        type: config.mime,
+      }
+    );
 
-    const url = URL.createObjectURL(blob);
 
-    const link = document.createElement("a");
+    const url =
+      URL.createObjectURL(blob);
+
+
+    const link =
+      document.createElement("a");
 
     link.href = url;
 
-    link.download = `data.${config.extension}`;
+    link.download =
+      `data.${config.extension}`;
+
+    link.style.display = "none";
+
 
     document.body.appendChild(link);
 
@@ -73,15 +138,27 @@ export function downloadFile() {
 
     link.remove();
 
-    URL.revokeObjectURL(url);
+
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 100);
+
 
     showToast(
       `${config.extension.toUpperCase()} file downloaded successfully.`,
-      "success",
+      "success"
     );
-  } catch (error) {
-    showToast("Failed to download file.", "error");
 
-    console.error("File download error:", error);
+  } catch (error) {
+
+    showToast(
+      "Failed to download file.",
+      "error"
+    );
+
+    console.error(
+      "File download error:",
+      error
+    );
   }
 }
