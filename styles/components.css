@@ -157,6 +157,7 @@
   pointer-events: none;
 }
 
+
 /* ====================================
    Converter
 ==================================== */
@@ -167,11 +168,6 @@
 
   gap: var(--space-2);
 }
-
-
-/* ====================================
-   Conversion Select
-==================================== */
 
 .conversion-select {
   height: var(--button-height);
@@ -200,40 +196,22 @@
     box-shadow var(--transition-base);
 }
 
-
-/* ====================================
-   Select Hover
-==================================== */
-
 .conversion-select:hover {
   color: var(--color-text);
-
   background-color: var(--color-surface-hover);
-
   border-color: var(--color-border-strong);
 }
-
-
-/* ====================================
-   Select Focus
-==================================== */
 
 .conversion-select:focus-visible {
   outline: none;
 
-  box-shadow: var(--shadow-focus);
-
   border-color: var(--color-primary);
+
+  box-shadow: var(--shadow-focus);
 }
-
-
-/* ====================================
-   Select Options
-==================================== */
 
 .conversion-select option {
   color: var(--color-text);
-
   background-color: var(--color-surface-raised);
 }
 
@@ -244,32 +222,20 @@
 
 .tool-btn.convert {
   color: var(--color-text-inverse);
-
   background-color: var(--color-primary);
-
   border-color: var(--color-primary);
 }
 
-
 .tool-btn.convert:hover {
   color: var(--color-text-inverse);
-
   background-color: var(--color-primary-hover);
-
   border-color: var(--color-primary-hover);
 }
 
-
 .tool-btn.convert:active {
   background-color: var(--color-primary-active);
-
   border-color: var(--color-primary-active);
 }
-
-
-/* ====================================
-   Converter Icon
-==================================== */
 
 .tool-btn.convert i {
   font-size: var(--font-size-sm);
@@ -292,6 +258,7 @@
   border-color: var(--color-primary-hover);
 }
 
+
 /* ====================================
    Active Tool Button
 ==================================== */
@@ -300,6 +267,7 @@
   color: var(--color-primary-text);
   background-color: var(--color-primary-soft);
   border-color: var(--color-primary);
+
   box-shadow: var(--shadow-xs);
 }
 
@@ -330,10 +298,16 @@
 
 
 /* ====================================
-   Panel
+   Editor Panel
 ==================================== */
 
 .editor-panel {
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
   overflow: hidden;
 
   background-color: var(--color-surface);
@@ -360,6 +334,8 @@
 ==================================== */
 
 .panel-header {
+  flex-shrink: 0;
+
   padding: 0 var(--space-4);
 
   border-bottom: var(--border-width) solid var(--color-border-light);
@@ -412,6 +388,7 @@
   line-height: var(--line-height-tight);
 }
 
+
 /* ====================================
    Editor Wrapper
 ==================================== */
@@ -420,13 +397,19 @@
   position: relative;
 
   width: 100%;
+  min-width: 0;
   min-height: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
 
   padding: var(--space-4);
 
-  background-color: var(--color-surface);
-
   overflow: hidden;
+
+  background-color: var(--color-surface);
 }
 
 
@@ -438,8 +421,10 @@
   position: relative;
 
   width: 100%;
-  height: 100%;
-  min-height: 360px;
+  min-width: 0;
+  min-height: 0;
+
+  flex: 1;
 
   display: flex;
 
@@ -448,8 +433,7 @@
   background-color: var(--color-editor-bg);
 
   border: var(--border-width) solid var(--color-border);
-
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: var(--radius-md);
 
   transition:
     border-color var(--transition-base),
@@ -457,15 +441,29 @@
     background-color var(--transition-base);
 }
 
-
-/* ====================================
-   Editor Container Focus
-==================================== */
-
 .editor-container:focus-within {
   border-color: var(--color-border-strong);
-
   box-shadow: var(--shadow-sm);
+}
+
+
+/* ====================================
+   Editor Typography
+==================================== */
+
+/*
+   These values MUST remain identical for
+   .line-numbers and .json-editor.
+
+   This keeps every line number vertically
+   aligned with its corresponding JSON line.
+*/
+
+.line-numbers,
+.json-editor {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
 }
 
 
@@ -475,26 +473,21 @@
 
 .line-numbers {
   width: 52px;
+  min-width: 52px;
 
   flex-shrink: 0;
 
   padding: var(--editor-padding) 0;
 
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   color: var(--color-text-muted);
-
   background-color: var(--color-editor-line);
 
   border-right: var(--border-width) solid var(--color-border);
-  border-radius: none;
-
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
-  line-height: 1.6;
 
   text-align: right;
-
   user-select: none;
 
   scrollbar-width: none;
@@ -510,14 +503,17 @@
 ==================================== */
 
 .line-number {
-  height: 1.85em;
+  box-sizing: border-box;
 
-  padding-right: var(--space-3);
+  width: 100%;
+  height: 1.6em;
+  min-height: 1.6em;
+
+  padding: 0 var(--space-3) 0 0;
 
   color: var(--color-text-muted);
 
-  font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
+  font: inherit;
   line-height: 1.6;
 
   white-space: nowrap;
@@ -533,178 +529,14 @@
 ==================================== */
 
 .line-number.error {
-  color: var(--color-danger);
+  position: relative;
 
+  color: var(--color-danger);
   background-color: var(--color-danger-soft);
 
   font-weight: var(--font-weight-semibold);
 
   border-right: 3px solid var(--color-danger);
-}
-
-
-/* ====================================
-   JSON Editor
-==================================== */
-
-.json-editor {
-  flex: 1;
-
-  width: 100%;
-  min-width: 0;
-  min-height: 0;
-
-  resize: none;
-
-  padding: var(--editor-padding);
-
-  color: var(--color-editor-text);
-
-  background-color: var(--color-editor-bg);
-
-  border: none;
-  outline: none;
-
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
-  line-height: 1.6;
-
-  white-space: pre;
-
-  overflow: auto;
-
-  tab-size: 2;
-
-  scrollbar-width: thin;
-
-  transition:
-    color var(--transition-base),
-    background-color var(--transition-base);
-}
-
-
-/* ====================================
-   JSON Editor Placeholder
-==================================== */
-
-.json-editor::placeholder {
-  color: var(--color-text-muted);
-
-  opacity: 0.7;
-}
-
-
-/* ====================================
-   JSON Editor Scrollbar
-==================================== */
-
-.json-editor::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-.json-editor::-webkit-scrollbar-track {
-  background: var(--color-editor-bg);
-}
-
-.json-editor::-webkit-scrollbar-thumb {
-  background-color: var(--color-border-strong);
-
-  border: 2px solid var(--color-editor-bg);
-
-  border-radius: var(--radius-full);
-}
-
-.json-editor::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-text-muted);
-}
-
-
-/* ====================================
-   Readonly Output Editor
-==================================== */
-
-.json-editor[readonly] {
-  cursor: default;
-}
-
-
-/* ====================================
-   Input Editor
-==================================== */
-
-#jsonInput {
-  caret-color: var(--color-primary);
-}
-
-
-/* ====================================
-   Output Editor
-==================================== */
-
-#jsonOutput {
-  caret-color: transparent;
-}
-
-
-/* ====================================
-   Editor Selection
-==================================== */
-
-.json-editor::selection {
-  color: var(--color-text-inverse);
-
-  background-color: var(--color-primary);
-}
-
-
-/* ====================================
-   Editor Disabled
-==================================== */
-
-.json-editor:disabled {
-  opacity: 0.6;
-
-  cursor: not-allowed;
-}
-
-
-/* ====================================
-   Editor Error State
-==================================== */
-
-.editor-container.has-error {
-  border-color: var(--color-danger);
-
-  box-shadow:
-    0 0 0 2px var(--color-danger-soft);
-}
-
-
-/* ====================================
-   Editor Valid State
-==================================== */
-
-.editor-container.is-valid {
-  border-color: var(--color-success);
-}
-
-
-/* ====================================
-   Editor Warning State
-==================================== */
-
-.editor-container.has-warning {
-  border-color: var(--color-warning);
-}
-
-
-/* ====================================
-   Editor Line Highlight
-==================================== */
-
-.line-number.error {
-  position: relative;
 }
 
 .line-number.error::before {
@@ -723,65 +555,130 @@
 
 
 /* ====================================
-   Responsive Editor
+   JSON Editor
 ==================================== */
 
-@media (max-width: 768px) {
-  .editor-wrapper {
-    padding: var(--space-3);
-  }
+.json-editor {
+  box-sizing: border-box;
 
-  .editor-container {
-    min-height: 300px;
-  }
+  flex: 1;
 
-  .line-numbers {
-    width: 42px;
-  }
+  width: 0;
+  min-width: 0;
+  min-height: 0;
 
-  .line-number {
-    padding-right: var(--space-2);
+  resize: none;
 
-    font-size: 11px;
-  }
+  padding: var(--editor-padding);
 
-  .json-editor {
-    padding: var(--space-3);
+  color: var(--color-editor-text);
+  background-color: var(--color-editor-bg);
 
-    font-size: 13px;
-  }
+  border: 0;
+  outline: none;
+
+  font: inherit;
+  line-height: inherit;
+
+  white-space: pre;
+  overflow: auto;
+
+  tab-size: 2;
+
+  scrollbar-width: thin;
+
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.json-editor::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
 }
 
 
 /* ====================================
-   Small Screens
+   Editor Scrollbar
 ==================================== */
 
-@media (max-width: 480px) {
-  .editor-wrapper {
-    padding: var(--space-2);
-  }
-
-  .editor-container {
-    min-height: 260px;
-  }
-
-  .line-numbers {
-    width: 36px;
-  }
-
-  .line-number {
-    padding-right: var(--space-2);
-
-    font-size: 10px;
-  }
-
-  .json-editor {
-    padding: var(--space-3) var(--space-2);
-
-    font-size: 12px;
-  }
+.json-editor::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
+
+.json-editor::-webkit-scrollbar-track {
+  background: var(--color-editor-bg);
+}
+
+.json-editor::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-strong);
+
+  border: 2px solid var(--color-editor-bg);
+  border-radius: var(--radius-full);
+}
+
+.json-editor::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-muted);
+}
+
+
+/* ====================================
+   Input / Output Editors
+==================================== */
+
+#jsonInput {
+  caret-color: var(--color-primary);
+}
+
+#jsonOutput {
+  caret-color: transparent;
+}
+
+.json-editor[readonly] {
+  cursor: default;
+}
+
+
+/* ====================================
+   Editor Selection
+==================================== */
+
+.json-editor::selection {
+  color: var(--color-text-inverse);
+  background-color: var(--color-primary);
+}
+
+
+/* ====================================
+   Editor Disabled
+==================================== */
+
+.json-editor:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ====================================
+   Editor States
+==================================== */
+
+.editor-container.has-error {
+  border-color: var(--color-danger);
+
+  box-shadow:
+    0 0 0 2px var(--color-danger-soft);
+}
+
+.editor-container.is-valid {
+  border-color: var(--color-success);
+}
+
+.editor-container.has-warning {
+  border-color: var(--color-warning);
+}
+
 
 /* ====================================
    Statistics
@@ -792,6 +689,7 @@
 
   font-family: var(--font-mono);
   font-size: var(--font-size-xs);
+
   white-space: nowrap;
 }
 
@@ -811,6 +709,8 @@
 ==================================== */
 
 .result-actions {
+  flex-shrink: 0;
+
   padding: var(--space-3) var(--space-4);
 
   border-top: var(--border-width) solid var(--color-border-light);
@@ -883,6 +783,7 @@
 
 .status-bar {
   margin-top: auto;
+
   padding: var(--space-2) 0;
 
   color: var(--color-text-muted);
@@ -922,9 +823,6 @@
 
   box-shadow: 0 0 0 3px var(--color-success-soft);
 }
-
-
-/* Status States */
 
 .status-indicator.valid {
   background-color: var(--color-success);
@@ -1086,185 +984,50 @@
   }
 }
 
-/* ====================================
-   Editor Wrapper
-==================================== */
-
-.editor-wrapper {
-  position: relative;
-
-  min-height: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  overflow: hidden;
-
-  background-color: var(--color-editor-bg);
-}
-
 
 /* ====================================
-   Editor Container
+   Responsive Editor
 ==================================== */
 
-.editor-container {
-  position: relative;
+@media (max-width: 768px) {
+  .editor-wrapper {
+    padding: var(--space-3);
+  }
 
-  min-height: 0;
-  height: 100%;
-
-  display: flex;
-
-  overflow: hidden;
-
-  background-color: var(--color-editor-bg);
-}
-
-
-/* ====================================
-   Line Numbers
-==================================== */
-
-.line-numbers {
-  width: 52px;
-  min-width: 52px;
-
-  flex-shrink: 0;
-
-  padding-top: var(--editor-padding);
-  padding-bottom: var(--editor-padding);
-
-  overflow: hidden;
-
-  color: var(--color-text-muted);
-  background-color: var(--color-editor-line);
-
-  border-right: var(--border-width) solid var(--color-border);
-
-  font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
-  line-height: 1.6;
-
-  text-align: right;
-
-  user-select: none;
-
-  scrollbar-width: none;
-}
-
-.line-numbers::-webkit-scrollbar {
-  display: none;
-}
-
-
-/* ====================================
-   Individual Line Number
-==================================== */
-
-.line-number {
-  height: 1.6em;
-
-  padding-right: var(--space-3);
-
-  color: var(--color-text-muted);
-
-  font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
-  line-height: 1.6;
-
-  white-space: nowrap;
-
-  transition:
-    color var(--transition-fast),
-    background-color var(--transition-fast);
-}
-
-
-/* ====================================
-   Error Line Number
-==================================== */
-
-.line-number.error {
-  color: var(--color-danger);
-
-  background-color: var(--color-danger-soft);
-
-  font-weight: var(--font-weight-semibold);
-
-  border-right: 3px solid var(--color-danger);
-}
-
-
-/* ====================================
-   Editor Panel Layout
-==================================== */
-
-.editor-panel {
-  min-height: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* ====================================
-   Editor Area
-==================================== */
-
-.editor-panel .editor-container {
-  flex: 1;
-
-  min-height: 0;
-}
-
-
-/* ====================================
-   Input Error State
-==================================== */
-
-.editor-wrapper.has-error {
-  border-color: var(--color-danger);
-}
-
-
-/* ====================================
-   Valid Input State
-==================================== */
-
-.editor-wrapper.is-valid {
-  border-color: var(--color-success);
-}
-
-
-/* ====================================
-   Line Number Scroll Sync
-==================================== */
-
-.line-numbers {
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-
-/* ====================================
-   Mobile Line Numbers
-==================================== */
-
-@media (max-width: 767px) {
   .line-numbers {
     width: 42px;
     min-width: 42px;
-
-    padding-top: var(--space-3);
-    padding-bottom: var(--space-3);
-
-    font-size: var(--font-size-xs);
   }
 
   .line-number {
     padding-right: var(--space-2);
+  }
 
-    font-size: 11px;
+  .json-editor {
+    padding: var(--space-3);
+  }
+}
+
+
+/* ====================================
+   Small Screens
+==================================== */
+
+@media (max-width: 480px) {
+  .editor-wrapper {
+    padding: var(--space-2);
+  }
+
+  .line-numbers {
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .line-number {
+    padding-right: var(--space-2);
+  }
+
+  .json-editor {
+    padding: var(--space-3) var(--space-2);
   }
 }

@@ -5,14 +5,19 @@
 .app {
   width: 100%;
   max-width: var(--app-max-width);
-  min-height: 100vh;
-  min-height: 100dvh;
+
+  height: 100vh;
+  max-height: 100vh;
+
+  min-height: 0;
 
   margin: 0 auto;
   padding: 0 var(--space-6);
 
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
 }
 
 
@@ -21,7 +26,10 @@
 ==================================== */
 
 .header {
+  width: 100%;
+
   min-height: var(--header-height);
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -58,6 +66,7 @@
 
   display: flex;
   align-items: center;
+
   gap: var(--space-2);
 }
 
@@ -67,7 +76,10 @@
 ==================================== */
 
 .toolbar {
+  width: 100%;
+
   min-height: var(--toolbar-height);
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -82,12 +94,12 @@
 ==================================== */
 
 .toolbar-group {
+  min-width: 0;
+
   display: flex;
   align-items: center;
 
   gap: var(--space-2);
-
-  min-width: 0;
 }
 
 
@@ -96,14 +108,17 @@
 ==================================== */
 
 .workspace {
+  width: 100%;
+
   flex: 1;
+  min-height: 0;
 
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 
   gap: var(--workspace-gap);
 
-  min-height: 0;
+  overflow: hidden;
 }
 
 
@@ -112,11 +127,18 @@
 ==================================== */
 
 .editor-panel {
+  width: 100%;
+
   min-width: 0;
-  min-height: var(--panel-min-height);
+  min-height: 0;
+
+  height: 100%;
+  max-height: 100%;
 
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
 }
 
 
@@ -125,15 +147,16 @@
 ==================================== */
 
 .panel-header {
+  width: 100%;
+
   min-height: var(--panel-header-height);
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   gap: var(--space-4);
-
-  flex-shrink: 0;
 }
 
 .panel-title {
@@ -166,11 +189,34 @@
 .editor-wrapper {
   position: relative;
 
-  flex: 1;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
+
+  flex: 1;
 
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* ====================================
+   Editor Container
+==================================== */
+
+.editor-container {
+  width: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  flex: 1;
+
+  display: flex;
+
+  overflow: hidden;
 }
 
 
@@ -179,13 +225,15 @@
 ==================================== */
 
 .result-actions {
+  width: 100%;
+
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
   gap: var(--space-2);
-
-  flex-shrink: 0;
 }
 
 
@@ -194,7 +242,10 @@
 ==================================== */
 
 .status-bar {
+  width: 100%;
+
   min-height: var(--status-bar-height);
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -226,14 +277,52 @@
 .toolbar,
 .workspace,
 .status-bar,
-.panel-header {
-  width: 100%;
+.panel-header,
+.editor-wrapper,
+.editor-container {
+  min-width: 0;
 }
 
-.brand,
-.brand-info,
-.workspace > *,
-.editor-wrapper,
-.panel-title {
-  min-width: 0;
+
+/* ====================================
+   Desktop Height Constraint
+==================================== */
+
+@media (min-width: 768px) {
+  .app {
+    height: 100vh;
+    max-height: 100vh;
+  }
+
+  .workspace {
+    max-height: 100%;
+  }
+}
+
+
+/* ====================================
+   Mobile Workspace
+==================================== */
+
+@media (max-width: 767px) {
+  .app {
+    height: 100dvh;
+    max-height: 100dvh;
+
+    padding: 0 var(--space-3);
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+
+    gap: var(--space-3);
+
+    overflow: hidden;
+  }
+
+  .editor-panel {
+    min-height: 0;
+    max-height: 100%;
+  }
 }
