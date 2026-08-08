@@ -1085,3 +1085,186 @@
     animation: none;
   }
 }
+
+/* ====================================
+   Editor Wrapper
+==================================== */
+
+.editor-wrapper {
+  position: relative;
+
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background-color: var(--color-editor-bg);
+}
+
+
+/* ====================================
+   Editor Container
+==================================== */
+
+.editor-container {
+  position: relative;
+
+  min-height: 0;
+  height: 100%;
+
+  display: flex;
+
+  overflow: hidden;
+
+  background-color: var(--color-editor-bg);
+}
+
+
+/* ====================================
+   Line Numbers
+==================================== */
+
+.line-numbers {
+  width: 52px;
+  min-width: 52px;
+
+  flex-shrink: 0;
+
+  padding-top: var(--editor-padding);
+  padding-bottom: var(--editor-padding);
+
+  overflow: hidden;
+
+  color: var(--color-text-muted);
+  background-color: var(--color-editor-line);
+
+  border-right: var(--border-width) solid var(--color-border);
+
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+
+  text-align: right;
+
+  user-select: none;
+
+  scrollbar-width: none;
+}
+
+.line-numbers::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ====================================
+   Individual Line Number
+==================================== */
+
+.line-number {
+  height: 1.6em;
+
+  padding-right: var(--space-3);
+
+  color: var(--color-text-muted);
+
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  line-height: 1.6;
+
+  white-space: nowrap;
+
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+
+/* ====================================
+   Error Line Number
+==================================== */
+
+.line-number.error {
+  color: var(--color-danger);
+
+  background-color: var(--color-danger-soft);
+
+  font-weight: var(--font-weight-semibold);
+
+  border-right: 3px solid var(--color-danger);
+}
+
+
+/* ====================================
+   Editor Panel Layout
+==================================== */
+
+.editor-panel {
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ====================================
+   Editor Area
+==================================== */
+
+.editor-panel .editor-container {
+  flex: 1;
+
+  min-height: 0;
+}
+
+
+/* ====================================
+   Input Error State
+==================================== */
+
+.editor-wrapper.has-error {
+  border-color: var(--color-danger);
+}
+
+
+/* ====================================
+   Valid Input State
+==================================== */
+
+.editor-wrapper.is-valid {
+  border-color: var(--color-success);
+}
+
+
+/* ====================================
+   Line Number Scroll Sync
+==================================== */
+
+.line-numbers {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+
+/* ====================================
+   Mobile Line Numbers
+==================================== */
+
+@media (max-width: 767px) {
+  .line-numbers {
+    width: 42px;
+    min-width: 42px;
+
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+
+    font-size: var(--font-size-xs);
+  }
+
+  .line-number {
+    padding-right: var(--space-2);
+
+    font-size: 11px;
+  }
+}
