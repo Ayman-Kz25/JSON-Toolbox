@@ -3,6 +3,11 @@ import {
   lineNumbers,
 } from "./dom.js";
 
+/**
+ * ====================================
+ * Initialize Line Numbers
+ * ====================================
+ */
 
 export function initLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
@@ -25,103 +30,152 @@ export function initLineNumbers() {
   );
 }
 
-
-/* ====================================
-   Update Line Numbers
-==================================== */
+/**
+ * ====================================
+ * Update Line Numbers
+ * ====================================
+ */
 
 export function updateLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
 
-  const lines = jsonInput.value.split("\n").length;
+  const lines =
+    jsonInput.value.split("\n").length;
 
-  let html = "";
+  const fragment =
+    document.createDocumentFragment();
 
   for (let i = 1; i <= lines; i++) {
-    html += `
-      <div
-        class="line-number"
-        data-line="${i}"
-      >
-        ${i}
-      </div>
-    `;
+    const lineElement =
+      document.createElement("div");
+
+    lineElement.className = "line-number";
+
+    lineElement.dataset.line = i;
+
+    lineElement.textContent = i;
+
+    fragment.appendChild(lineElement);
   }
 
-  lineNumbers.innerHTML = html;
+  lineNumbers.replaceChildren(fragment);
 
   syncLineNumbers();
 }
 
-
-/* ====================================
-   Sync Scroll
-==================================== */
+/**
+ * ====================================
+ * Sync Scroll
+ * ====================================
+ */
 
 export function syncLineNumbers() {
   if (!jsonInput || !lineNumbers) return;
 
-  lineNumbers.scrollTop = jsonInput.scrollTop;
+  lineNumbers.scrollTop =
+    jsonInput.scrollTop;
 }
 
-
-/* ====================================
-   Editor Keyboard Handling
-==================================== */
+/**
+ * ====================================
+ * Editor Keyboard Handling
+ * ====================================
+ */
 
 function handleEditorKeydown(event) {
   if (!jsonInput) return;
 
+  /*
+   * Insert two spaces when Tab
+   * is pressed inside the editor.
+   */
+
   if (event.key === "Tab") {
     event.preventDefault();
 
-    const start = jsonInput.selectionStart;
-    const end = jsonInput.selectionEnd;
+    const start =
+      jsonInput.selectionStart;
+
+    const end =
+      jsonInput.selectionEnd;
+
+    const value = jsonInput.value;
 
     jsonInput.value =
-      jsonInput.value.substring(0, start) +
+      value.substring(0, start) +
       "  " +
-      jsonInput.value.substring(end);
+      value.substring(end);
 
-    jsonInput.selectionStart = start + 2;
-    jsonInput.selectionEnd = start + 2;
+    const cursorPosition =
+      start + 2;
+
+    jsonInput.selectionStart =
+      cursorPosition;
+
+    jsonInput.selectionEnd =
+      cursorPosition;
 
     updateLineNumbers();
+
+    /*
+     * Trigger the normal input event
+     * so other modules can react to
+     * the changed editor content.
+     */
+    jsonInput.dispatchEvent(
+      new Event("input", {
+        bubbles: true,
+      })
+    );
   }
 }
 
-
-/* ====================================
-   Highlight Error Line
-==================================== */
+/**
+ * ====================================
+ * Highlight Error Line
+ * ====================================
+ */
 
 export function highlightErrorLine(line) {
   if (!lineNumbers) return;
 
   clearErrorLine();
 
-  if (!line || line < 1) return;
+  const errorLine = Number(line);
+
+  if (!Number.isInteger(errorLine)) {
+    return;
+  }
+
+  if (errorLine < 1) {
+    return;
+  }
 
   const lineElement =
     lineNumbers.querySelector(
-      `[data-line="${line}"]`
+      `[data-line="${errorLine}"]`
     );
 
-  if (!lineElement) return;
+  if (!lineElement) {
+    return;
+  }
 
   lineElement.classList.add("error");
 }
 
-
-/* ====================================
-   Clear Error Line
-==================================== */
+/**
+ * ====================================
+ * Clear Error Line
+ * ====================================
+ */
 
 export function clearErrorLine() {
   if (!lineNumbers) return;
 
   lineNumbers
-    .querySelectorAll(".line-number.error")
+    .querySelectorAll(
+      ".line-number.error"
+    )
     .forEach((element) => {
       element.classList.remove("error");
     });
