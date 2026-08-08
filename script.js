@@ -7,6 +7,7 @@ import { initMinifier } from "./scripts/minifier.js";
 import { initStats } from "./scripts/stats.js";
 import { initStatus } from "./scripts/status.js";
 import { initTheme } from "./scripts/theme.js";
+import { initToolState } from "./scripts/toolState.js";
 import { initUploader } from "./scripts/upload.js";
 import { initValidator } from "./scripts/validator.js";
 
@@ -22,6 +23,7 @@ function initApp(){
     initClear();
     initStats();
     initStatus();
+    initToolState();
 }
 
 initApp();
