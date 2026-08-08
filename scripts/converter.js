@@ -1,4 +1,5 @@
 import { convertBtn, conversionType, jsonInput, jsonOutput } from "./dom.js";
+import { setDownloadFormat } from "./download.js";
 import { updateStats } from "./stats.js";
 import { initStatus } from "./status.js";
 
@@ -44,6 +45,8 @@ export function convertJSON() {
     }
 
     jsonOutput.value = result;
+  
+    setDownloadFormat(type);
 
     updateStats();
 
