@@ -1,26 +1,40 @@
-/* TOAST CONTAINER */
+/* ====================================
+   TOAST CONTAINER
+==================================== */
+
 .toast-container {
   position: fixed;
-  bottom: var(--space-5);
+
   right: var(--space-5);
+  bottom: var(--space-5);
 
   z-index: var(--z-toast);
+
+  width: min(
+    var(--toast-width),
+    calc(100vw - var(--space-8))
+  );
 
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: var(--space-3);
 
-  width: min(var(--toast-width), calc(100vw - var(--space-8)));
+  gap: var(--space-3);
 
   pointer-events: none;
 }
 
-/* TOAST */
+
+/* ====================================
+   BASE TOAST
+==================================== */
 
 .toast {
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
+
   gap: var(--space-3);
 
   width: 100%;
@@ -28,11 +42,12 @@
 
   padding: var(--space-3) var(--space-4);
 
+  color: var(--color-text);
+
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-lg);
 
   background-color: var(--color-surface-raised);
-  color: var(--color-text);
 
   box-shadow: var(--shadow-lg);
 
@@ -51,111 +66,167 @@
   pointer-events: auto;
 }
 
-/* VISIBLE STATE */
+
+/* ====================================
+   VISIBLE STATE
+==================================== */
 
 .toast.show {
   opacity: 1;
   transform: translateX(0);
 }
 
-/* TOAST ICON */
+
+/* ====================================
+   TOAST ICON
+==================================== */
 
 .toast i {
+  width: 20px;
+  height: 20px;
+
+  flex: 0 0 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
-  flex: 0 0 20px;
-
-  width: 20px;
-  height: 20px;
-
   font-size: var(--font-size-lg);
 }
 
-/* TOAST MESSAGE */
+
+/* ====================================
+   TOAST MESSAGE
+==================================== */
 
 .toast span {
-  flex: 1;
   min-width: 0;
+  flex: 1;
 
   overflow-wrap: anywhere;
 }
 
-/* SUCCESS */
 
-.toast-success {
-  border-color: var(--color-success);
+/* ====================================
+   SUCCESS TOAST
+==================================== */
+
+.toast.toast-success {
+  color: var(--color-success);
 
   background-color: var(--color-success-soft);
+
+  border-color: var(--color-success);
 }
 
-.toast-success i {
+.toast.toast-success i {
   color: var(--color-success);
 }
 
-/* ERROR */
-
-.toast-error {
-  border-color: var(--color-danger);
-
-  background-color: var(--color-danger-soft);
+.toast.toast-success span {
+  color: var(--color-text);
 }
 
-.toast-error i {
+
+/* ====================================
+   ERROR TOAST
+==================================== */
+
+.toast.toast-error {
+  color: var(--color-danger);
+
+  background-color: var(--color-danger-soft);
+
+  border-color: var(--color-danger);
+}
+
+.toast.toast-error i {
   color: var(--color-danger);
 }
 
-/* WARNING */
-
-.toast-warning {
-  border-color: var(--color-warning);
-
-  background-color: var(--color-warning-soft);
+.toast.toast-error span {
+  color: var(--color-text);
 }
 
-.toast-warning i {
+
+/* ====================================
+   WARNING TOAST
+==================================== */
+
+.toast.toast-warning {
+  color: var(--color-warning);
+
+  background-color: var(--color-warning-soft);
+
+  border-color: var(--color-warning);
+}
+
+.toast.toast-warning i {
   color: var(--color-warning);
 }
 
-/* INFO */
-
-.toast-info {
-  border-color: var(--color-info);
-
-  background-color: var(--color-info-soft);
+.toast.toast-warning span {
+  color: var(--color-text);
 }
 
-.toast-info i {
+
+/* ====================================
+   INFO TOAST
+==================================== */
+
+.toast.toast-info {
+  color: var(--color-info);
+
+  background-color: var(--color-info-soft);
+
+  border-color: var(--color-info);
+}
+
+.toast.toast-info i {
   color: var(--color-info);
 }
 
-/* HOVER */
+.toast.toast-info span {
+  color: var(--color-text);
+}
+
+
+/* ====================================
+   HOVER
+==================================== */
 
 .toast:hover {
   box-shadow: var(--shadow-md);
 }
 
-/* RESPONSIVE */
+
+/* ====================================
+   RESPONSIVE
+==================================== */
 
 @media (max-width: 600px) {
   .toast-container {
     top: var(--space-4);
     right: var(--space-4);
+    bottom: auto;
     left: var(--space-4);
 
     width: auto;
+
     align-items: stretch;
   }
 
   .toast {
     min-height: 50px;
 
-    padding: var(--space-3) var(--space-3);
+    padding: var(--space-3);
   }
 }
 
-/* REDUCED MOTION */
+
+/* ====================================
+   REDUCED MOTION
+==================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .toast {

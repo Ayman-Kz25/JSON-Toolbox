@@ -7,6 +7,13 @@ const toastIcons = {
   info: "fa-circle-info",
 };
 
+const toastTypes = new Set([
+  "success",
+  "error",
+  "warning",
+  "info",
+]);
+
 export function showToast(
   message,
   type = "info",
@@ -14,19 +21,26 @@ export function showToast(
 ) {
   if (!toastContainer) return;
 
+  // Make sure only supported toast types are used.
+  const toastType = toastTypes.has(type)
+    ? type
+    : "info";
+
   const toast = document.createElement("div");
 
-  toast.className = `toast ${type}`;
+  toast.className = `toast toast-${toastType}`;
   toast.setAttribute("role", "status");
+  toast.setAttribute("aria-live", "polite");
 
   const icon = document.createElement("i");
 
   icon.className =
-    `fa-solid ${toastIcons[type] || toastIcons.info}`;
+    `fa-solid ${toastIcons[toastType]}`;
 
   icon.setAttribute("aria-hidden", "true");
 
-  const messageText = document.createElement("span");
+  const messageText =
+    document.createElement("span");
 
   messageText.className = "toast-message";
   messageText.textContent = message;
@@ -35,6 +49,8 @@ export function showToast(
 
   toastContainer.appendChild(toast);
 
+  // Allow the browser to render the initial state
+  // before applying the visible state.
   requestAnimationFrame(() => {
     toast.classList.add("show");
   });
