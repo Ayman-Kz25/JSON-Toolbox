@@ -2,14 +2,20 @@ import {
   clearBtn,
   jsonInput,
   jsonOutput,
-  errorMessage,
-  errorText,
   jsonFileInput,
 } from "./dom.js";
 
 import { showToast } from "./toast.js";
 import { updateStats } from "./stats.js";
 import { initStatus } from "./status.js";
+
+import {
+  clearJSONError,
+} from "./json-error.js";
+
+import {
+  updateLineNumbers,
+} from "./line-numbers.js";
 
 
 export function initClear() {
@@ -27,64 +33,68 @@ export function clearAll() {
   const isAlreadyClear =
     !jsonInput?.value.trim() &&
     !jsonOutput?.value.trim() &&
-    !jsonFileInput?.value &&
-    errorMessage?.hidden !== false;
-
+    !jsonFileInput?.value;
 
   if (isAlreadyClear) {
 
+    clearJSONError();
+
+    updateLineNumbers();
+
+    updateStats();
+
     initStatus(
-      "Workspace is already clear",
+      "Workspace is already clear.",
       "warning"
     );
-
 
     showToast(
       "Workspace is already clear.",
       "info"
     );
 
-
     return;
   }
 
 
-
+  // Clear input
   if (jsonInput) {
     jsonInput.value = "";
   }
 
 
+  // Clear output
   if (jsonOutput) {
     jsonOutput.value = "";
   }
 
 
-  if (errorMessage) {
-    errorMessage.hidden = true;
-  }
-
-
-  if (errorText) {
-    errorText.textContent = "";
-  }
-
-
+  // Reset file input
   if (jsonFileInput) {
     jsonFileInput.value = "";
   }
 
 
-  // Reset counters
+  // Clear JSON error
+  clearJSONError();
+
+
+  // Reset line numbers
+  updateLineNumbers();
+
+
+  // Reset statistics
   updateStats();
 
 
+  // Update application status
   initStatus(
-    "Workspace cleared",
+    "Workspace cleared.",
     "warning"
   );
 
 
+  // Notify user
   showToast(
     "Workspace cleared.",
     "success"
