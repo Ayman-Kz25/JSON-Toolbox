@@ -1,4 +1,6 @@
-const toolButtons = document.querySelectorAll(".tool-btn");
+const toolButtons = document.querySelectorAll(
+  "#formatBtn, #minifyBtn, #validateBtn, #convertBtn"
+);
 
 export function setActiveTool(button) {
   if (!button) return;
